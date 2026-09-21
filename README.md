@@ -39,7 +39,7 @@ This runs two pre-registered holdout scenarios and seeds 42, 52, 62, 72, and 82.
 
 ## Project website
 
-`docs/index.html` is a static site ready for GitHub Pages. Push this folder to [chengxiaoen/AG-IoT-OpenSet-IDS](https://github.com/chengxiaoen/AG-IoT-OpenSet-IDS), then enable **Pages → Deploy from a branch → /docs**. See [docs/PROJECT_HOMEPAGE.md](docs/PROJECT_HOMEPAGE.md).
+`docs/index.html` is a static site ready for GitHub Pages. Push this folder to [chengcxiaoen/AG-IoT-OpenSet-IDS](https://github.com/chengcxiaoen/AG-IoT-OpenSet-IDS), then enable **Pages → Deploy from a branch → /docs**. See [docs/PROJECT_HOMEPAGE.md](docs/PROJECT_HOMEPAGE.md).
 
 ## Citation
 
