@@ -19,5 +19,5 @@ authors:
   - family-names: Chen
     given-names: Xi
 license: MIT
-repository-code: "https://github.com/chengxiaoen/AG-IoT-OpenSet-IDS"
+repository-code: "https://github.com/chengcxiaoen/AG-IoT-OpenSet-IDS"
 abstract: "Reproducibility materials for lightweight open-set intrusion detection in agricultural IoT."
