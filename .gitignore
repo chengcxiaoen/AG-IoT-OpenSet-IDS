@@ -1,0 +1,13 @@
+datasets/
+outputs/
+results/*.zip
+results/**/*.h5
+results/**/*.joblib
+results/**/*.npz
+results/**/*.csv.gz
+logs/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.DS_Store

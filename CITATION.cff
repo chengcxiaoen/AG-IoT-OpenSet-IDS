@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the associated paper and the Farm-Flow dataset."
+title: "AG-IoT Open-Set IDS"
+version: "0.1.0-prepublication"
+date-released: 2026-09-21
+authors:
+  - family-names: Bao
+    given-names: Enying
+  - family-names: Yan
+    given-names: Ruiteng
+  - family-names: Li
+    given-names: Kunqing
+  - family-names: Wen
+    given-names: Ke
+  - family-names: Zhao
+    given-names: Qiuyu
+  - family-names: Wang
+    given-names: Lei
+  - family-names: Chen
+    given-names: Xi
+license: MIT
+repository-code: "https://github.com/chengxiaoen/AG-IoT-OpenSet-IDS"
+abstract: "Reproducibility materials for lightweight open-set intrusion detection in agricultural IoT."
