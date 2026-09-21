@@ -1,0 +1,53 @@
+{
+  "protocol_version": "paper-final-v1",
+  "dataset": "datasets/Farm-Flow/Farm-Flows.csv",
+  "label_column": "traffic",
+  "excluded_classes": [
+    "BotNet DDoS"
+  ],
+  "seeds": [
+    42,
+    52,
+    62,
+    72,
+    82
+  ],
+  "scenarios": {
+    "primary_arp_port": [
+      "Arp Spoofing",
+      "Port Scanning"
+    ],
+    "stress_arp_port_icmp": [
+      "Arp Spoofing",
+      "Port Scanning",
+      "ICMP Flood"
+    ]
+  },
+  "context": "full_role_context",
+  "known_acceptance_rate": 0.95,
+  "context_benign_acceptance_rate": 0.999,
+  "minimum_class_calibration_samples": 30,
+  "context_scale_percentile": 99,
+  "test_fraction_of_known": 0.2,
+  "validation_fraction_of_known_pool": 0.1,
+  "calibration_fraction_of_known_pool": 0.1,
+  "epochs": 100,
+  "patience": 10,
+  "batch_size": 1024,
+  "inference_batch_size": 256,
+  "transform_chunk_rows": 8192,
+  "learning_rate": 0.0001,
+  "dropout": 0.3,
+  "standardized_feature_clip": 10,
+  "class_weight": "balanced",
+  "sampling": "none",
+  "benchmark": {
+    "scenario": "primary_arp_port",
+    "seed": 42,
+    "device_type": "server_cpu",
+    "threads": 1,
+    "warmup": 1000,
+    "repeats": 5,
+    "batch_size": 1
+  }
+}

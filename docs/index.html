@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Open-set intrusion detection for agricultural IoT with class-specific confidence and benign-gated communication context.">
+  <title>AG-IoT Open-Set IDS</title>
+  <style>
+    :root { --ink:#17233a; --blue:#1769aa; --orange:#c56809; --paper:#f7f9fc; --line:#dce3ec; }
+    * { box-sizing: border-box; } body { margin:0; font:16px/1.6 Arial, sans-serif; color:var(--ink); background:var(--paper); }
+    header { background:linear-gradient(120deg,#123965,#1769aa); color:#fff; padding:66px 24px 56px; }
+    main, header > div { max-width:1040px; margin:auto; } h1 { font-size:clamp(2rem,5vw,3.4rem); line-height:1.1; margin:0 0 16px; }
+    h2 { margin:44px 0 14px; font-size:1.65rem; } h3 { margin:22px 0 8px; } p { margin:0 0 14px; }
+    .tag { display:inline-block; border:1px solid #b9d8f4; border-radius:100px; padding:3px 12px; margin:0 6px 8px 0; font-size:.9rem; }
+    .lead { font-size:1.16rem; max-width:820px; } .notice { background:#fff3d9; border-left:4px solid var(--orange); padding:14px 18px; margin-top:24px; }
+    main { background:#fff; min-height:100vh; padding:28px 44px 64px; box-shadow:0 0 36px #d6dfea; } a { color:var(--blue); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; } .card { border:1px solid var(--line); border-radius:10px; padding:20px; }
+    .figure { border:1px solid var(--line); border-radius:10px; padding:16px; margin:22px 0; background:#fff; } .figure img { display:block; width:100%; height:auto; }
+    table { width:100%; border-collapse:collapse; font-size:.92rem; } th,td { padding:8px; border-bottom:1px solid var(--line); text-align:right; } th:first-child,td:first-child { text-align:left; }
+    footer { text-align:center; padding:28px; color:#536273; font-size:.9rem; } code { background:#eef2f6; padding:2px 5px; border-radius:3px; }
+    @media (max-width:620px) { main { padding:20px; } header { padding:44px 20px; } table { font-size:.75rem; } }
+  </style>
+</head>
+<body>
+  <header><div>
+    <div class="tag">Agricultural IoT</div><div class="tag">Open-set recognition</div><div class="tag">Network security</div>
+    <h1>AG-IoT Open-Set IDS</h1>
+    <p class="lead">Lightweight open-set intrusion detection using class-specific confidence thresholds and benign-gated communication context.</p>
+    <p><a style="color:#fff" href="https://github.com/chengxiaoen/AG-IoT-OpenSet-IDS">Code repository</a> · <a style="color:#fff" href="https://zenodo.org/records/10964648">Farm-Flow dataset</a> · <a style="color:#fff" href="#reproducibility">Reproducibility</a></p>
+    <div class="notice"><strong>Pre-publication template.</strong> Verify the final manuscript citation and complete the release checklist before publishing this site.</div>
+  </div></header>
+  <main>
+    <section>
+      <h2>Overview</h2>
+      <p>Known-class confidence can be misleading for unseen attacks: an unknown flow may receive high softmax confidence, particularly when it resembles benign traffic. Our method first applies class-specific maximum softmax probability (MSP) thresholds, then checks communication regularity only for flows predicted as benign.</p>
+      <div class="grid"><div class="card"><h3>Compact backbone</h3><p>A 256-128-64 MLP processes tabular network-flow features.</p></div><div class="card"><h3>Class-aware rejection</h3><p>Each known class receives its own calibration-derived MSP threshold.</p></div><div class="card"><h3>Benign-gated context</h3><p>Eleven benign communication relations provide additional evidence for predicted-benign flows.</p></div></div>
+    </section>
+    <section>
+      <h2>Why open-set detection?</h2>
+      <div class="figure"><img src="assets/Fig0_Problem.png" alt="Problem illustration: a shared confidence threshold can miss an atypical unknown flow, while communication context separates it."><p><strong>Problem illustration.</strong> A single global confidence threshold cannot capture class-dependent score distributions and may miss atypical communication behavior.</p></div>
+    </section>
+    <section>
+      <h2>Method</h2>
+      <div class="figure"><img src="assets/Fig1_Framework.png" alt="Method framework including MLP, class-specific MSP, and benign-gated context."><p><strong>Framework.</strong> Training and calibration are known-only; at test time the MLP and class-specific MSP operate first, and communication context is consulted only for predicted-benign flows.</p></div>
+    </section>
+    <section>
+      <h2>Reported primary-holdout ablation</h2>
+      <p>Five paired seeds: 42, 52, 62, 72, and 82. Unknown attacks are ARP spoofing and port scanning. Values are mean ± sample standard deviation (%).</p>
+      <table><thead><tr><th>Method</th><th>Macro-F1 ↑</th><th>Unknown recall ↑</th><th>Benign FAR ↓</th></tr></thead><tbody>
+        <tr><td>Closed-set MLP</td><td>68.31 ± 0.84</td><td>0.00 ± 0.00</td><td>0.09 ± 0.06</td></tr>
+        <tr><td>Context only</td><td>71.72 ± 0.91</td><td>2.49 ± 0.95</td><td>0.21 ± 0.11</td></tr>
+        <tr><td>Global MSP</td><td>83.40 ± 6.49</td><td>68.00 ± 31.14</td><td>0.15 ± 0.06</td></tr>
+        <tr><td>Class-specific MSP</td><td>85.25 ± 6.07</td><td>73.04 ± 31.76</td><td>5.16 ± 0.54</td></tr>
+        <tr><td>Global MSP + context</td><td>86.35 ± 5.71</td><td>70.42 ± 30.54</td><td>0.26 ± 0.10</td></tr>
+        <tr><td><strong>Class-specific MSP + context</strong></td><td><strong>86.99 ± 6.00</strong></td><td><strong>74.27 ± 31.76</strong></td><td>5.21 ± 0.51</td></tr>
+      </tbody></table>
+      <p style="margin-top:12px">The complete method leads macro-F1 and unknown recall among these ablations, but not FAR; this is a stated classification-rejection trade-off.</p>
+    </section>
+    <section id="reproducibility">
+      <h2>Reproducibility</h2>
+      <p>The code uses exact observable duplicate-group splitting, frozen configurations, and group-audit files. Farm-Flow is not redistributed; download it from the original <a href="https://zenodo.org/records/10964648">Zenodo record</a> and follow its terms.</p>
+      <p>See <a href="REPRODUCIBILITY.md">reproduction instructions</a>, <a href="DATASET.md">dataset access</a>, <a href="RESULTS.md">reported results</a>, and the <a href="PUBLICATION_CHECKLIST.md">publication checklist</a>.</p>
+    </section>
+    <section>
+      <h2>Limitations</h2>
+      <p>These experiments use one dataset and random duplicate-group-disjoint partitions. They do not establish temporal, cross-device, cross-dataset, full-system-efficiency, or edge-device generalization.</p>
+    </section>
+  </main>
+  <footer>AG-IoT Open-Set IDS · Pre-publication project-page template</footer>
+</body>
+</html>

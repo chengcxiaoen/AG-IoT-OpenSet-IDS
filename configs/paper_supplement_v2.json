@@ -1,0 +1,22 @@
+{
+  "protocol_version": "paper-supplement-v2",
+  "expected_dataset_sha256": "ad765a02951e0f08b498e202cafa835b6da31a823bf898cb331497f0960d90e8",
+  "legacy_config": "configs/paper_final_legacy8.json",
+  "far_targets": [0.005, 0.01, 0.05],
+  "shape_acceptance": 0.95,
+  "minimum_class_calibration_samples": 30,
+  "context_scale_percentile": 99,
+  "inference_batch_size": 256,
+  "transform_chunk_rows": 8192,
+  "openmax_tail_size": 20,
+  "openmax_alpha": 10,
+  "benchmark": {
+    "scenario": "primary_arp_port",
+    "seed": 42,
+    "threads": 1,
+    "warmup": 100,
+    "samples": 1000,
+    "repeats": 3,
+    "sample_seed": 20260913
+  }
+}
